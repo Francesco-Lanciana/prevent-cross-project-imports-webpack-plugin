@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 
-import ComponentC from 'first_project/Components/ComponentC';
-import ComponentD from 'first_project/Components/ComponentD';
+import ComponentC from 'second_project/Components/ComponentC';
+import ComponentD from 'second_project/Components/ComponentD';
 
 const rootElement = document.getElementById("root");
 

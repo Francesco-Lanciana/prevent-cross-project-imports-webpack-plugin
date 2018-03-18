@@ -2,7 +2,7 @@ import React from 'react';
 
 /* Here we import a module from the second project which should trigger
 an error */
-import ComponentC from 'first_project/Components/ComponentB';
+import ComponentC from 'second_project/Components/ComponentC';
 
 class ComponentB extends React.Component {
     render() {

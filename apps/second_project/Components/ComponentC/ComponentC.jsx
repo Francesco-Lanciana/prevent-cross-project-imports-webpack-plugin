@@ -1,5 +1,5 @@
 import React from 'react';
-import ComponentD from 'first_project/Components/ComponentD';
+import ComponentD from 'second_project/Components/ComponentD';
 
 class ComponentC extends React.Component {
     render() {

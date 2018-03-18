@@ -4,7 +4,11 @@
   "description": "Provides a mechanism to prevent modules importing modules that aren't located in the same project.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon --exec \"((SET && SET NODE_ENV=development) || NODE_ENV=development) && webpack-dev-server --env.development\"",
+    "build": "webpack --env.production && node move-files.js",
+    "build:analyze": "webpack --env.production --env.analyze --profile --progress",
+    "build:serve": "webpack --env.production && ((SET && SET NODE_ENV=production) || NODE_ENV=production) && node server.js",
+    "build:stats": "webpack --env.production --profile --progress --json > stats.json && node move-files.js"
   },
   "repository": {
     "type": "git",

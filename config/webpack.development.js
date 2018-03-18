@@ -33,7 +33,6 @@ const developmentConfig = (projectsMetaData) => {
         parts.loadImages({ options: { limit: 25000 } }),
         parts.loadFonts(),
         parts.generateSourceMaps({ type: 'eval-source-map' }),
-        parts.setFreeVariable( "DEVELOPMENT", true ),
         parts.preventCrossProjectImports({ 
             projectRootPaths: pathDirectories,
             //exemptProjects: [projectsMetaData.apps["second_project"].root]
