@@ -70,7 +70,8 @@ Here's an example webpack config illustrating how to use these options
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name]-bundle.js'
+    filename: '[name]-bundle.js',
+    library: '[name]'
   },
   plugins: [
     new PreventCrossProjectImportsPlugin({
