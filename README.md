@@ -48,7 +48,7 @@ module.exports = {
 
 <h2 align="center">Options</h2>
 
-You can pass a hash of configuration options to `prevent-cross-project-imports-webpack-plugin`.
+You can pass several configuration options to `prevent-cross-project-imports-webpack-plugin`.
 Allowed values are as follows
 
 |Name|Type|Default|Description|
@@ -57,6 +57,31 @@ Allowed values are as follows
 |**[`exemptProjects`](#)**|`{Array\|String}`|`[]`|The root folder of each project whose modules can import other projects modules or simply be imported themselves|
 |**[`ignoreFilesOutsideProjects`](#)**|`{Boolean}`|`true`|Specifies whether projects not included in `projectRootPaths` can have modules that import/are imported by other projects. Defaults to `true`|
 |**[`customProjectComparator`](#)**|`{Function}`|`null`|Violations are determined by using the root paths provided by `projectRootPaths` and then checking if a module and it's dependency have paths that contain the same root path substring. If you want to perform your own custom logic to determine an import violation than you can pass a function in here. It will receive `dependencyPath` as its first argument and the `modulePath` as its second. Return `true` if a violation has occured, and `false` otherwise|
+
+
+Here's an example webpack config illustrating how to use these options
+
+**webpack.config.js**
+```js
+{
+  entry: {
+      first_project: path.resolve(__dirname, 'apps/first_project/Components/ComponentExports.jsx'),
+      second_project: path.resolve(__dirname, 'apps/second_project/Components/ComponentExports.jsx')
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name]-bundle.js'
+  },
+  plugins: [
+    new PreventCrossProjectImportsPlugin({
+        projectRootPaths: [
+            path.resolve(__dirname, 'apps/first_project'),
+            path.resolve(__dirname, 'apps/second_project')
+        ]
+    }),
+  ]
+}
+```
 
 
 <h2 align="center">Using the test example</h2>
@@ -68,6 +93,7 @@ To run locally, you will need to clone the repo and:
 2. Open a Command Prompt / Terminal and go to the *top* directory of your repository & type: `npm install` or `yarn install`
 
 3. From the same directory type: `npm run start` to serve the project using Webpack Dev Server.
+
 
 
 <h2 align="center">Repository structure</h2>
