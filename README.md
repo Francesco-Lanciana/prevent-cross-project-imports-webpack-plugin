@@ -28,7 +28,40 @@ may contain inexperienced developers.
 
 
 
-To run locally, you will need to:
+<h2 align="center">Usage</h2>
+
+The plugin will throw an error if any bundles module attempts to import
+a module from another bundle. Just add the plugin to your `webpack`
+config as follows:
+
+**webpack.config.js**
+```js
+const PreventCrossProjectImportsPlugin = require('prevent-cross-project-imports-webpack-plugin');
+
+module.exports = {
+  plugins: [
+    new PreventCrossProjectImportsPlugin(),
+  ]
+}
+```
+
+
+<h2 align="center">Options</h2>
+
+You can pass a hash of configuration options to `prevent-cross-project-imports-webpack-plugin`.
+Allowed values are as follows
+
+|Name|Type|Default|Description|
+|:--:|:--:|:-----:|:----------|
+|**[`projectRootPaths`](#)**|`{Array\|String}`|`[]`|The root folder of each project whose imports you want to control|
+|**[`exemptProjects`](#)**|`{Array\|String}`|`[]`|The root folder of each project whose modules can import other projects modules or simply be imported themselves|
+|**[`ignoreFilesOutsideProjects`](#)**|`{Boolean}`|`true`|Specifies whether projects not included in `projectRootPaths` can have modules that import/are imported by other projects. Defaults to `true`|
+|**[`customProjectComparator`](#)**|`{Function}`|`null`|Violations are determined by using the root paths provided by `projectRootPaths` and then checking if a module and it's dependency have paths that contain the same root path substring. If you want to perform your own custom logic to determine an import violation than you can pass a function in here. It will receive `dependencyPath` as its first argument and the `modulePath` as its second. Return `true` if a violation has occured, and `false` otherwise|
+
+
+<h2 align="center">Using the test example</h2>
+
+To run locally, you will need to clone the repo and:
 
 1. Install NodeJS from [https://nodejs.org/](https://nodejs.org/).
 
@@ -37,9 +70,12 @@ To run locally, you will need to:
 3. From the same directory type: `npm run start` to serve the project using Webpack Dev Server.
 
 
+<h2 align="center">Repository structure</h2>
+
+
 The repository contains the following folders:
 
-**_app_**
+**_apps_**
 
 All source files for this web-applications (projects) are located in this folder.
 
